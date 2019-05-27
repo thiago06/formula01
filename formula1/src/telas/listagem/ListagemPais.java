@@ -9,6 +9,7 @@ import dao.PaisDao;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import telas.manutencao.ManutencaoCircuito;
+import telas.manutencao.ManutencaoPais;
 
 /**
  *
@@ -112,7 +113,7 @@ public class ListagemPais extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        ManutencaoCircuito manutencao = new ManutencaoCircuito (null, true);
+        ManutencaoPais manutencao = new ManutencaoPais (null, true);
         manutencao.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
