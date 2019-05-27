@@ -1,5 +1,4 @@
 // author 17;
-
 package dao;
 
 import conexao.Conexao;
@@ -13,26 +12,37 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class PaisDao {
-    public static boolean inserir(String sigla, String nome)
-    {
+
+    public static boolean inserir(String sigla, String nome) {
         String sql = "INSERT INTO pais (sigla, nome) VALUES (?, ?)";
-        try
-        {
+        try {
             PreparedStatement ps = conexao.Conexao.getConexao().prepareStatement(sql);
             ps.setString(1, sigla);
             ps.setString(2, nome);
             ps.executeUpdate();
             return true;
-        }
-        catch (SQLException | ClassNotFoundException ex)
-        {
+        } catch (SQLException | ClassNotFoundException ex) {
             System.out.println(ex.getMessage());
             return false;
         }
-        
-        
     }
-     public static List<String[]> consultar() {
+
+    public static boolean alterar(String sigla, String nome) {
+        String sql = "UPDATE pais SET NOME = ? where SIGLA = ?";
+        try {
+            PreparedStatement ps = conexao.Conexao.getConexao().prepareStatement(sql);
+            ps.setString(1, nome);
+            ps.setString(2, sigla);
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        }
+
+    }
+
+    public static List<String[]> consultar() {
         List<String[]> resultados = new ArrayList<>();
         String sql = "SELECT sigla, nome FROM pais";
         PreparedStatement ps;
@@ -52,13 +62,12 @@ public class PaisDao {
         }
     }
 
-public static void main(String[] args) {
-        boolean resultado = inserir("BR", "Brasil");
-        if (resultado){
+    public static void main(String[] args) {
+        boolean resultado = alterar("BR", "Brazil");
+        if (resultado) {
             JOptionPane.showMessageDialog(null, "Inserido com sucesso -> -> -> 17");
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "ERROUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU");
         }
     }
 }
-
